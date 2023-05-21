@@ -1,2 +1,23 @@
 image:
   file: .gitpod.Dockerfile
+
+# List the start up tasks. You can start them in parallel in multiple terminals. See https://www.gitpod.io/docs/config-start-tasks/
+tasks:
+# Build and run on startup
+- init: cargo build
+  command: cargo run
+# In parallel, open a terminal with automatic type-checking for development
+#- command: cargo watch -x check
+
+# List the ports you want to expose and what to do when they are served. See https://www.gitpod.io/docs/config-ports/
+ports:
+- port: 6080
+  onOpen: open-preview
+
+
+vscode:
+  extensions:
+    # Rust Extension Pack
+    - pinage404.rust-extension-pack
+    # Even Better TOML
+    - tamasfe.even-better-toml
