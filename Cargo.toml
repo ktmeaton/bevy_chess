@@ -3,7 +3,20 @@ name = "bevy_chess"
 version = "0.1.0"
 edition = "2021"
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[profile.dev]
+opt-level = 1
+
+[profile.dev.package."*"]
+opt-level = 3
+
+[profile.release]
+# If you want, you can also enable LTO (Link-Time-Optimization) for the actual release builds, 
+# to squeeze out even more performance at the cost of very slow compile times:
+lto = "thin"
 
 [dependencies]
-bevy = {version = "0.10.0", features = ["wayland"]}
+# Use the main bevy branch for experimental WebGPU support
+# NOTE: Remove the dynamic feature before release, 
+# or just remove permanently and use `cargo run --features bevy/dynamic`
+bevy = { git = "https://github.com/bevyengine/bevy", rev = "f76b3c42"}
+enum-iterator = "1.4.1"
